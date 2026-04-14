@@ -39,29 +39,23 @@
 </header>
 
 <section class="hero">
-  <div class="hero-media" aria-hidden="true">
-    <div class="hero-video-shell">
-      <iframe
-        src="https://player.vimeo.com/video/493280357?background=1&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&dnt=1"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen
-        title="Background video"
-        loading="eager"
-        referrerpolicy="strict-origin-when-cross-origin"
-      ></iframe>
-    </div>
-    <div class="hero-overlay"></div>
+  <div class="hero-video-shell">
+    <video class="hero-video-native" autoplay muted loop playsinline>
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
   </div>
 
-  <div class="container hero-inner">
-    <div class="hero-content">
-      <div class="hero-eyebrow">Create. Amaze. Inspire.</div>
-      <div class="hero-rule"></div>
-      <p class="hero-subtext">
-        We’re the D’Onofrio's — a family of builders, problem-solvers, and straight shooters.
-      </p>
-      <a class="hero-button" href="#about">Learn more about who we are</a>
-    </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h2 class="hero-eyebrow">CREATE. AMAZE. INSPIRE.</h2>
+    <h1 class="hero-title">
+      We bridge the gap between your business and the public.
+    </h1>
+    <p class="hero-sub">
+      We’re the D’Onofrios — a family of builders, problem-solvers, and straight shooters.
+    </p>
+    <a href="#about" class="hero-button">Learn More About Who We Are</a>
   </div>
 </section>
 
