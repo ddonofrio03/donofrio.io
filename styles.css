@@ -204,7 +204,7 @@ button {
   max-width: 1120px;
   text-align: center;
   color: #fff;
-  margin-top: 20px;
+  margin: 0 auto;
 }
 
 .hero-eyebrow {
@@ -214,6 +214,7 @@ button {
   letter-spacing: -0.03em;
   margin: 0 auto 34px;
   color: #67f0c1;
+  text-align: center;
 }
 
 .hero-rule {
@@ -230,6 +231,7 @@ button {
   font-size: clamp(1rem, 1.8vw, 1.1rem);
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.92);
+  text-align: center;
 }
 
 .hero-button {
@@ -396,10 +398,20 @@ p {
   flex: 0 0 auto;
 }
 
-.service-media img,
-.card img {
+/* SERVICE CARDS */
+
+.service-media {
   width: 100%;
-  height: auto;
+  height: 255px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.service-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 /* TEAM */
@@ -482,6 +494,10 @@ footer {
   .team-photo {
     height: 380px;
   }
+
+  .service-media {
+    height: 235px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -543,6 +559,10 @@ footer {
   .team-photo {
     height: 360px;
   }
+
+  .service-media {
+    height: 260px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -589,5 +609,9 @@ footer {
 
   .team-photo {
     height: 320px;
+  }
+
+  .service-media {
+    height: 220px;
   }
 }
