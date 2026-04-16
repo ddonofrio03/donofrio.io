@@ -3,33 +3,21 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
-  title: "DONOFR.IO — A Family of Builders",
-  description:
-    "The D'Onofrios — AI, sales, marketing, and public affairs expertise. We help businesses communicate clearly and grow.",
-  openGraph: {
-    title: "DONOFR.IO — A Family of Builders",
-    description:
-      "AI, sales, marketing, and public affairs. A family of builders, problem-solvers, and straight shooters.",
-    url: "https://donofr.io",
-    siteName: "DONOFR.IO",
-  },
+  title: "DONOFR.IO — A family of builders",
+  description: "We bridge the gap between your business and the public.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
         <Nav />
         {children}
         <footer>
-          <div className="logo">
-            DONOFR<span>.IO</span>
+          <div className="container footer-inner">
+            <div>DONOFR.IO</div>
+            <div className="small">A family of builders.</div>
           </div>
-          <p>A family of builders. &copy; {new Date().getFullYear()} DONOFR.IO</p>
         </footer>
       </body>
     </html>
