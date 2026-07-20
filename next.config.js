@@ -16,37 +16,27 @@ const POOLS = [
   { path: 'davemike', host: 'https://golfmajors-davemike.vercel.app' },
 ];
 
-/** Capitalised spellings people actually type, redirected to the canonical lowercase. */
-const ALIASES = {
-  themen: ['TheMen', 'Themen', 'THEMEN'],
-  '4way': ['4Way', '4WAY'],
-  davemike: ['DaveMike', 'Davemike', 'DAVEMIKE'],
-};
-
 const nextConfig = {
   images: {
     unoptimized: false,
   },
 
   async rewrites() {
-    // `:path*` matches zero or more segments, so this covers the bare /themen
-    // as well as everything beneath it.
-    return POOLS.map(({ path, host }) => ({
-      source: `/${path}/:path*`,
-      destination: `${host}/${path}/:path*`,
-    }));
-  },
-
-  async redirects() {
-    return Object.entries(ALIASES).flatMap(([canonical, variants]) =>
-      variants.map((variant) => ({
-        source: `/${variant}/:path*`,
-        destination: `/${canonical}/:path*`,
-        // Deliberately temporary: a 308 gets cached hard by browsers and is
-        // painful to undo if these paths ever move.
-        permanent: false,
-      })),
-    );
+    // Two rules per pool, deliberately.
+    //
+    // A single `/themen/:path*` looks equivalent but causes a redirect loop:
+    // `:path*` matches zero segments, so the bare /themen renders a destination
+    // of `/themen/` WITH a trailing slash, which Next then 308s back to
+    // /themen, which matches again. `:path+` requires at least one segment, so
+    // the bare path is handled by its own exact rule and never gains a slash.
+    //
+    // There are no case-alias redirects here because Next matches these sources
+    // case-insensitively already — /4Way and /DaveMike hit these same rules. An
+    // explicit /THEMEN -> /themen redirect is what triggered the loop above.
+    return POOLS.flatMap(({ path, host }) => [
+      { source: `/${path}`, destination: `${host}/${path}` },
+      { source: `/${path}/:path+`, destination: `${host}/${path}/:path+` },
+    ]);
   },
 };
 
